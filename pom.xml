@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mss.app</groupId>
+  <artifactId>gameoForum</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>gameoForum</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <failOnMissingWebXml>true</failOnMissingWebXml>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <version.hibernate-jpamodelgen>5.3.2.Final</version.hibernate-jpamodelgen>
+    <version.javaee-api>8.0</version.javaee-api>
+    <version.junit>3.8.1</version.junit>
+    <version.maven-clean>3.0.0</version.maven-clean>
+    <version.mysql>8.0.11</version.mysql>
+    <version.resteasy>3.6.0.Final</version.resteasy>
+    <version.wildfly>1.2.2.Final</version.wildfly>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${version.mysql}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>${version.javaee-api}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jackson-provider</artifactId>
+      <version>${version.resteasy}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>${version.hibernate-jpamodelgen}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>${version.maven-clean}</version>
+        <configuration>
+          <excludeDefaultDirectories>true</excludeDefaultDirectories>
+          <filesets>
+            <fileset>
+              <directory>target</directory>
+              <includes>
+                <include>**</include>
+              </includes>
+              <excludes>
+                <exclude>wildfly-run/**</exclude>
+              </excludes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>${version.wildfly}</version>
+        <configuration>
+          <add-user>
+            <users>
+              <user>
+                <username>admin</username>
+                <password>admin</password>
+              </user>
+            </users>
+          </add-user>
+        </configuration>
+        <executions>
+          <!-- Wildfly deploys -->
+          <!-- Deploy MySQL driver on install -->
+          <execution>
+            <id>deploy-mysql-connector</id>
+            <phase>install</phase>
+            <goals><goal>deploy-artifact</goal></goals>
+            <configuration>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <name>mysql-connector-java.jar</name>
+            </configuration>
+          </execution>
+          <!-- Add a DataSource to handle MySQL -->
+          <execution>
+            <id>add-mysql-datasource</id>
+            <phase>install</phase>
+            <goals><goal>add-resource</goal></goals>
+            <configuration>
+              <address>subsystem=datasources,data-source=java:jboss/datasources/mysqlDS</address>
+              <resources>
+                <resource>
+                  <properties>
+                    <jndi-name>java:jboss/datasources/mysqlDS</jndi-name>
+                    <enabled>true</enabled>
+                    <connection-url>jdbc:mysql://localhost/forum</connection-url>
+                    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+                    <driver-name>mysql-connector-java.jar</driver-name>
+                    <user-name>root</user-name>
+                    <password>root</password>
+                  </properties>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+</project>
