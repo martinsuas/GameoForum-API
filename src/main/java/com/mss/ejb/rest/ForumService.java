@@ -12,9 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Collections;
 
 @Path("/forums")
 @RequestScoped
@@ -24,32 +22,32 @@ public class ForumService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Forum> getForums() {
-        return repo.findAll();
+    public Response getForums() {
+        return Response.ok().entity(repo.findAll()).build();
     }
 
     @GET
     @Path("/{forumId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Forum getForumById(@PathParam("forumId") int forumId) {
+    public Response getForumById(@PathParam("forumId") int forumId) {
         Forum forum = repo.find(forumId);
         if (forum == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return forum;
+        return Response.ok().entity(Collections.singletonList(forum)).build();
     }
 
     @GET
     @Path("/root")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Forum> getRootForums() {
-        return repo.findRootForums();
+    public Response getRootForums() {
+        return Response.ok().entity(repo.findRootForums()).build();
     }
 
     @GET
     @Path("/{forumId}:children")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Forum> getChildForums(@PathParam("forumId") int forumId) {
-        return repo.findSubForums(forumId);
+    public Response getChildForums(@PathParam("forumId") int forumId) {
+        return Response.ok().entity(repo.findSubForums(forumId)).build();
     }
 }

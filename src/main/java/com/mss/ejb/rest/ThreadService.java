@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
+import java.util.Collections;
 
 
 @Path("/threads")
@@ -23,34 +23,34 @@ public class ThreadService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Thread> getThreads() {
-        return repo.findAll();
+    public Response getThreads() {
+        return Response.ok().entity(repo.findAll()).build();
     }
 
     @GET
     @Path("/{threadId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Thread getThreadById(@PathParam("threadId") int threadId) {
+    public Response getThreadById(@PathParam("threadId") int threadId) {
         Thread thread = repo.find(threadId);
         if (thread == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return thread;
+        return Response.ok().entity(Collections.singletonList(thread)).build();
     }
 
     @GET
     @Path("/forum:{forumId}/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Thread> getThreadsByForumId(@PathParam("forumId") int forumId)
+    public Response getThreadsByForumId(@PathParam("forumId") int forumId)
     {
-        return repo.findThreadsByForumId(forumId);
+        return Response.ok().entity(repo.findThreadsByForumId(forumId)).build();
     }
 
     @GET
     @Path("/user:{userId}/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Thread> getThreadsByUserId(@PathParam("userId") int userId)
+    public Response getThreadsByUserId(@PathParam("userId") int userId)
     {
-        return repo.findThreadsByUserId(userId);
+        return Response.ok().entity(repo.findThreadsByUserId(userId)).build();
     }
 }

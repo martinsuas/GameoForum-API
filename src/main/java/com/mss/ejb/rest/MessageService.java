@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
+import java.util.Collections;
 
 @Path("/messages")
 @RequestScoped
@@ -22,32 +22,32 @@ public class MessageService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getMessages() {
-        return repo.findAll();
+    public Response getMessages() {
+        return Response.ok().entity(repo.findAll()).build();
     }
 
     @GET
     @Path("/{messageId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Message getMessageById(@PathParam("messageId") long messageId) {
+    public Response getMessageById(@PathParam("messageId") long messageId) {
         Message message = repo.find(messageId);
         if (message == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return message;
+        return Response.ok().entity(Collections.singletonList(message)).build();
     }
 
     @GET
     @Path("/thread:{threadId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getMessagesByThreadId(@PathParam("threadId") int threadId) {
-        return repo.findMessagesByThreadId(threadId);
+    public Response getMessagesByThreadId(@PathParam("threadId") int threadId) {
+        return Response.ok().entity(repo.findMessagesByThreadId(threadId)).build();
     }
 
     @GET
     @Path("/user:{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getMessagesByUserId(@PathParam("userId") int userId) {
-        return repo.findMessagesByUserId(userId);
+    public Response getMessagesByUserId(@PathParam("userId") int userId) {
+        return Response.ok().entity(repo.findMessagesByUserId(userId)).build();
     }
 }

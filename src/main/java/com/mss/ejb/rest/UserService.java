@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
+import java.util.Collections;
 
 @Path("/users")
 @RequestScoped
@@ -23,29 +23,29 @@ public class UserService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsers() {
-        return repo.findAll();
+    public Response getUsers() {
+        return Response.ok().entity(repo.findAll()).build();
     }
 
     @GET
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUserById(@PathParam("userId") int userId) {
+    public Response getUserById(@PathParam("userId") int userId) {
         User user = repo.find(userId);
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return user;
+        return Response.ok().entity(Collections.singletonList(user)).build();
     }
 
     @GET
     @Path("/{username:" + User.USERNAME_REGEX + "}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUserByUsername(@PathParam("username") String username) {
+    public Response getUserByUsername(@PathParam("username") String username) {
         User user = repo.findByUsername(username);
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return user;
+        return Response.ok().entity(Collections.singletonList(user)).build();
     }
 }
