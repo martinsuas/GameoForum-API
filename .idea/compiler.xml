@@ -12,11 +12,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="GameoForum" />
         <module name="gameoForum" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gameoForum" target="1.8" />
+      <module name="GameoForum" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="gameoForum:war">
+  <artifact type="war" name="GameoForum:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="gameoForum.war">
-      <element id="artifact" artifact-name="gameoForum:war exploded" />
+      <element id="artifact" artifact-name="GameoForum:war exploded" />
     </root>
   </artifact>
 </component>

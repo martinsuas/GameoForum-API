@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/gameoForum.iml" filepath="$PROJECT_DIR$/gameoForum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GameoForum.iml" filepath="$PROJECT_DIR$/GameoForum.iml" />
     </modules>
   </component>
 </project>
