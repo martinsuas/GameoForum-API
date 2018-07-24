@@ -15,6 +15,13 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <!-- Configure your MySQL server variables here -->
+    <mysql-app-database>gameoforum</mysql-app-database>
+    <mysql-connection-url>jdbc:mysql://localhost/${mysql-app-database}</mysql-connection-url>
+    <mysql-user-name>admin</mysql-user-name>
+    <mysql-password>hello</mysql-password>
+
+    <!-- Version control -->
     <version.hibernate-jpamodelgen>5.3.2.Final</version.hibernate-jpamodelgen>
     <version.javaee-api>8.0</version.javaee-api>
     <version.junit>3.8.1</version.junit>
@@ -59,41 +66,11 @@
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>${version.maven-clean}</version>
-        <configuration>
-          <excludeDefaultDirectories>true</excludeDefaultDirectories>
-          <filesets>
-            <fileset>
-              <directory>target</directory>
-              <includes>
-                <include>**</include>
-              </includes>
-              <excludes>
-                <exclude>wildfly-run/**</exclude>
-              </excludes>
-            </fileset>
-          </filesets>
-        </configuration>
-      </plugin>
-
       <plugin>
         <groupId>org.wildfly.plugins</groupId>
         <artifactId>wildfly-maven-plugin</artifactId>
         <version>${version.wildfly}</version>
-        <configuration>
-          <add-user>
-            <users>
-              <user>
-                <username>admin</username>
-                <password>admin</password>
-              </user>
-            </users>
-          </add-user>
-        </configuration>
+
         <executions>
           <!-- Wildfly deploys -->
           <!-- Deploy MySQL driver on install -->
@@ -119,11 +96,11 @@
                   <properties>
                     <jndi-name>java:jboss/datasources/mysqlDS</jndi-name>
                     <enabled>true</enabled>
-                    <connection-url>jdbc:mysql://localhost/forum</connection-url>
+                    <connection-url>${mysql-connection-url}</connection-url>
                     <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
                     <driver-name>mysql-connector-java.jar</driver-name>
-                    <user-name>root</user-name>
-                    <password>root</password>
+                    <user-name>${mysql-user-name}</user-name>
+                    <password>${mysql-password}</password>
                   </properties>
                 </resource>
               </resources>
