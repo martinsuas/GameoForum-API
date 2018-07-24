@@ -13,15 +13,15 @@ A MySQL server where you can create a database:
 populate the database with development data.
 
 - Set up the following properties accordingly in the **pom.xml**:
-    - **<mysql-app-database>** the database in the server that hosts
+    - **mysql-app-database** the database in the server that hosts
     your tables.
 
-    - **<mysql-connection-url>** the connection url to communicate with
+    - **mysql-connection-url** the connection url to communicate with
     your database.
 
-    - **<mysql-user-name>**
+    - **mysql-user-name**
 
-    - **<mysql-password>**
+    - **mysql-password**
 
 
 # To run:
