@@ -5,8 +5,14 @@ import com.mss.annotations.RequiredString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -16,17 +22,25 @@ public class Thread implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     private int threadId;
 
-    @NotNull
-    private int forumId;
+    @ManyToOne
+    @JoinColumn(name = "forumId")
+    @XmlTransient
+    private Forum forum;
 
-    @NotNull
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @XmlTransient
+    private User user;
 
     @RequiredString
     private String title;
 
     @NotNull
     private long creationTime;
+
+    @OneToMany(mappedBy = "thread")
+    @XmlTransient
+    private List<Message> messages = new ArrayList<>();
 
     public int getThreadId() {
         return threadId;
@@ -36,20 +50,20 @@ public class Thread implements Serializable {
         this.threadId = threadId;
     }
 
-    public int getForumId() {
-        return forumId;
+    public Forum getForum() {
+        return forum;
     }
 
-    public void setForumId(int forumId) {
-        this.forumId = forumId;
+    public void setForum(Forum forum) {
+        this.forum = forum;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -66,5 +80,13 @@ public class Thread implements Serializable {
 
     public void setCreationTime(long creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

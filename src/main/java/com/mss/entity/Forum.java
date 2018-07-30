@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
@@ -26,8 +25,7 @@ public class Forum implements Serializable {
 
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "forumId")
+    @OneToMany(mappedBy = "forum")
     @XmlTransient
     private List<Thread> threads = new ArrayList<>();
 

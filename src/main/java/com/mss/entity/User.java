@@ -54,9 +54,13 @@ public class User implements Serializable {
     @NotNull
     private long registrationTime;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     @XmlTransient
     private List<Thread> threads = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @XmlTransient
+    private List<Message> messages = new ArrayList<>();
 
     private LocalDate dob;
 
@@ -138,5 +142,13 @@ public class User implements Serializable {
 
     public void setThreads(List<Thread> threads) {
         this.threads = threads;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

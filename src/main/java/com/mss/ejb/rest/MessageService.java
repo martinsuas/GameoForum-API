@@ -1,7 +1,11 @@
 package com.mss.ejb.rest;
 
 import com.mss.ejb.repo.MessageRepo;
+import com.mss.ejb.repo.ThreadRepo;
+import com.mss.ejb.repo.UserRepo;
 import com.mss.entity.Message;
+import com.mss.entity.User;
+import com.mss.entity.Thread;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,6 +23,12 @@ import java.util.Collections;
 public class MessageService {
     @Inject
     MessageRepo repo;
+
+    @Inject
+    ThreadRepo threadRepo;
+
+    @Inject
+    UserRepo userRepo;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,13 +51,15 @@ public class MessageService {
     @Path("/thread:{threadId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMessagesByThreadId(@PathParam("threadId") int threadId) {
-        return Response.ok().entity(repo.findMessagesByThreadId(threadId)).build();
+        Thread thread = threadRepo.find(threadId);
+        return Response.ok().entity(repo.findMessagesByThread(thread)).build();
     }
 
     @GET
     @Path("/user:{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMessagesByUserId(@PathParam("userId") int userId) {
-        return Response.ok().entity(repo.findMessagesByUserId(userId)).build();
+        User user = userRepo.find(userId);
+        return Response.ok().entity(repo.findMessagesByUser(user)).build();
     }
 }

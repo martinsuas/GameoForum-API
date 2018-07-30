@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 @Entity
@@ -15,11 +18,15 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long messageId;
 
-    @NotNull
-    private int threadId;
+    @ManyToOne
+    @JoinColumn(name = "threadId")
+    @XmlTransient
+    Thread thread;
 
-    @NotNull
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @XmlTransient
+    private User user;
 
     @RequiredString
     private String message;
@@ -31,20 +38,20 @@ public class Message implements Serializable {
         return messageId;
     }
 
-    public int getThreadId() {
-        return threadId;
+    public Thread getThread() {
+        return thread;
     }
 
-    public void setThreadId(int threadId) {
-        this.threadId = threadId;
+    public void setThread(Thread thread) {
+        this.thread = thread;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMessage() {

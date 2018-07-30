@@ -1,8 +1,10 @@
 package com.mss.ejb.repo;
 
 
+import com.mss.entity.Forum;
 import com.mss.entity.Thread;
 import com.mss.entity.Thread_;
+import com.mss.entity.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -33,18 +35,18 @@ public class ThreadRepo {
         return em.createQuery(cq).getResultList();
     }
 
-    public List<Thread> findThreadsByForumId(int forumId) {
+    public List<Thread> findThreadsByForum(Forum forum) {
         updateCriteria();
         cq.select(thread)
-                .where(cb.equal(thread.get(Thread_.forumId), forumId))
+                .where(cb.equal(thread.get(Thread_.forum), forum))
                 .orderBy(cb.desc(thread.get(Thread_.creationTime)));
         return em.createQuery(cq).getResultList();
     }
 
-    public List<Thread> findThreadsByUserId(int userId) {
+    public List<Thread> findThreadsByUser(User user) {
         updateCriteria();
         cq.select(thread)
-                .where(cb.equal(thread.get(Thread_.userId), userId))
+                .where(cb.equal(thread.get(Thread_.user), user))
                 .orderBy(cb.desc(thread.get(Thread_.creationTime)));
         return em.createQuery(cq).getResultList();
     }

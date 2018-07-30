@@ -2,6 +2,8 @@ package com.mss.ejb.repo;
 
 import com.mss.entity.Message;
 import com.mss.entity.Message_;
+import com.mss.entity.Thread;
+import com.mss.entity.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -31,18 +33,18 @@ public class MessageRepo {
         return em.createQuery(cq).getResultList();
     }
 
-    public List<Message> findMessagesByThreadId(int threadId) {
+    public List<Message> findMessagesByThread(Thread thread) {
         updateCriteria();
         cq.select(message)
-                .where(cb.equal(message.get(Message_.threadId), threadId))
+                .where(cb.equal(message.get(Message_.thread), thread))
                 .orderBy(cb.asc(message.get(Message_.postingTime)));
         return em.createQuery(cq).getResultList();
     }
 
-    public List<Message> findMessagesByUserId(int userId) {
+    public List<Message> findMessagesByUser(User user) {
         updateCriteria();
         cq.select(message)
-                .where(cb.equal(message.get(Message_.userId), userId))
+                .where(cb.equal(message.get(Message_.user), user))
                 .orderBy(cb.desc(message.get(Message_.postingTime)));
         return em.createQuery(cq).getResultList();
     }

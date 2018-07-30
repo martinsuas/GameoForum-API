@@ -1,7 +1,11 @@
 package com.mss.ejb.rest;
 
+import com.mss.ejb.repo.ForumRepo;
 import com.mss.ejb.repo.ThreadRepo;
+import com.mss.ejb.repo.UserRepo;
+import com.mss.entity.Forum;
 import com.mss.entity.Thread;
+import com.mss.entity.User;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,6 +24,12 @@ import java.util.Collections;
 public class ThreadService {
     @Inject
     ThreadRepo repo;
+
+    @Inject
+    UserRepo userRepo;
+
+    @Inject
+    ForumRepo forumRepo;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +53,8 @@ public class ThreadService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getThreadsByForumId(@PathParam("forumId") int forumId)
     {
-        return Response.ok().entity(repo.findThreadsByForumId(forumId)).build();
+        Forum forum = forumRepo.find(forumId);
+        return Response.ok().entity(repo.findThreadsByForum(forum)).build();
     }
 
     @GET
@@ -51,6 +62,7 @@ public class ThreadService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getThreadsByUserId(@PathParam("userId") int userId)
     {
-        return Response.ok().entity(repo.findThreadsByUserId(userId)).build();
+        User user = userRepo.find(userId);
+        return Response.ok().entity(repo.findThreadsByUser(user)).build();
     }
 }
