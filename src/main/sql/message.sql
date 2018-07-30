@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table forum.message
+-- Dumping structure for table gameoforum.message
 CREATE TABLE IF NOT EXISTS `message` (
   `messageId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `threadId` int(10) unsigned NOT NULL,
@@ -21,36 +21,36 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`messageId`),
   KEY `threadId` (`threadId`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2527 DEFAULT CHARSET=utf8;
 
--- Dumping data for table forum.message: 0 rows
+-- Dumping data for table gameoforum.message: 2,526 rows
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 INSERT INTO `message` (`messageId`, `threadId`, `userId`, `message`, `postingTime`) VALUES
-	(1, 0, 33, 'Give up, they attack fast with spells.', 1437869506),
-	(2, 0, 20, 'Maybe you can escape well with magic.', 1437869618),
-	(3, 0, 46, 'Seriously, try to summon well with luck.', 1437869829),
-	(4, 0, 46, 'They really escape fast with mounts.', 1437870031),
-	(5, 0, 17, 'Try to summon slowly on horses.', 1437870756),
-	(6, 0, 17, 'Try to summon well with items.', 1437871313),
-	(7, 0, 33, 'Try to escape slowly using magic.', 1437871727),
-	(8, 0, 17, 'Give up, they cast fast using swords.', 1437872057),
-	(9, 0, 46, 'Give up, they attack slowly with luck.', 1437872824),
-	(10, 0, 33, 'Try to escape fast on knives.', 1437873789),
-	(11, 0, 20, 'Give up, they attack well with magic.', 1437874200),
-	(12, 0, 33, 'Try to jump slowly with horses.', 1437874861),
-	(13, 0, 33, 'They really attack well with horses.', 1437875371),
-	(14, 0, 46, 'Try to defend fast with staffs.', 1437875831),
-	(15, 0, 33, 'Try to summon badly with horses.', 1437876824),
-	(16, 0, 33, 'They really summon well with knives.', 1437876969),
-	(17, 0, 17, 'They really escape slowly on knives.', 1437877617),
-	(18, 0, 33, 'Seriously, try to defend badly on horses.', 1437877735),
-	(19, 0, 46, 'Give up, they jump fast on spells.', 1437878725),
-	(20, 0, 17, 'Mmm... oh I know, cast well with mounts.', 1437879549),
-	(21, 0, 33, 'Try to attack slowly on magic.', 1437880475),
-	(22, 0, 17, 'Maybe you can escape badly using mounts.', 1437881459),
-	(23, 0, 33, 'Give up, they cast fast using lances.', 1437882310),
-	(24, 0, 33, 'Maybe you can jump fast using items.', 1437883256),
-	(25, 0, 46, 'They really attack well using spells.', 1437883711),
+	(1, 175, 33, 'Give up, they attack fast with spells.', 1437869506),
+	(2, 175, 20, 'Maybe you can escape well with magic.', 1437869618),
+	(3, 175, 46, 'Seriously, try to summon well with luck.', 1437869829),
+	(4, 175, 46, 'They really escape fast with mounts.', 1437870031),
+	(5, 175, 17, 'Try to summon slowly on horses.', 1437870756),
+	(6, 175, 17, 'Try to summon well with items.', 1437871313),
+	(7, 175, 33, 'Try to escape slowly using magic.', 1437871727),
+	(8, 175, 17, 'Give up, they cast fast using swords.', 1437872057),
+	(9, 175, 46, 'Give up, they attack slowly with luck.', 1437872824),
+	(10, 175, 33, 'Try to escape fast on knives.', 1437873789),
+	(11, 175, 20, 'Give up, they attack well with magic.', 1437874200),
+	(12, 175, 33, 'Try to jump slowly with horses.', 1437874861),
+	(13, 175, 33, 'They really attack well with horses.', 1437875371),
+	(14, 175, 46, 'Try to defend fast with staffs.', 1437875831),
+	(15, 175, 33, 'Try to summon badly with horses.', 1437876824),
+	(16, 175, 33, 'They really summon well with knives.', 1437876969),
+	(17, 175, 17, 'They really escape slowly on knives.', 1437877617),
+	(18, 175, 33, 'Seriously, try to defend badly on horses.', 1437877735),
+	(19, 175, 46, 'Give up, they jump fast on spells.', 1437878725),
+	(20, 175, 17, 'Mmm... oh I know, cast well with mounts.', 1437879549),
+	(21, 175, 33, 'Try to attack slowly on magic.', 1437880475),
+	(22, 175, 17, 'Maybe you can escape badly using mounts.', 1437881459),
+	(23, 175, 33, 'Give up, they cast fast using lances.', 1437882310),
+	(24, 175, 33, 'Maybe you can jump fast using items.', 1437883256),
+	(25, 175, 46, 'They really attack well using spells.', 1437883711),
 	(26, 1, 23, 'Give up, they summon slowly on magic.', 1523763576),
 	(27, 1, 42, 'Try to attack fast on spells.', 1523763949),
 	(28, 1, 44, 'Try to jump well using knives.', 1523764807),

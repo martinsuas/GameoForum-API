@@ -143,7 +143,7 @@ def create_threads (num_users, num_forums, num_threads, max_messages_per_forum=1
             message = M_SUBJECT[random.randint(0, len(M_SUBJECT)-1)] + " " + M_VERB[random.randint(0, len(M_VERB)-1)] +  " " + \
                       M_ADJECTIVE[random.randint(0, len(M_ADJECTIVE)-1)] + " " + M_ARTICLE[random.randint(0, len(M_ARTICLE)-1)] + " " + \
                       M_ITEM[random.randint(0, len(M_ITEM)-1)] + "."
-            line = "%d~%d~%s~%d\n" % (i, poster, message, date_posted.timestamp())
+            line = "%d~%d~%s~%d\n" % (i + 1, poster, message, date_posted.timestamp())
             out_m.write(line)
             # Put some time between posts
             date_posted = date_posted + timedelta(seconds=random.randint(60, 1000))

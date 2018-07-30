@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table forum.thread
+-- Dumping structure for table gameoforum.thread
 CREATE TABLE IF NOT EXISTS `thread` (
   `threadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `forumId` int(10) unsigned NOT NULL,
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `thread` (
   PRIMARY KEY (`threadId`),
   KEY `forumId` (`forumId`),
   KEY `userId` (`userId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
 
--- Dumping data for table forum.thread: 0 rows
+-- Dumping data for table gameoforum.thread: 175 rows
 /*!40000 ALTER TABLE `thread` DISABLE KEYS */;
 INSERT INTO `thread` (`threadId`, `forumId`, `userId`, `title`, `creationTime`) VALUES
 	(1, 2, 33, 'When can I discover the magic?', 1437869506),

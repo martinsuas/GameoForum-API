@@ -1,4 +1,5 @@
 # Project ignores
+src/main/scripts/csv
 target/
 
 # Windows image file caches

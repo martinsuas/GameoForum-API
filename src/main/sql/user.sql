@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table forum.user
+-- Dumping structure for table gameoforum.user
 CREATE TABLE IF NOT EXISTS `user` (
   `userId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `login` (`password`,`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
--- Dumping data for table forum.user: ~0 rows (approximately)
+-- Dumping data for table gameoforum.user: ~50 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`userId`, `username`, `password`, `firstName`, `lastName`, `email`, `registrationTime`, `dob`, `gender`) VALUES
 	(1, 'cecil1', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Cecil', 'Camels', 'cecil1@yahoo.com', 1408068190, '1998-12-13', 'Male'),
