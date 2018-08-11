@@ -54,6 +54,14 @@ public class Message implements Serializable {
         this.user = user;
     }
 
+    public int getPosterId() {
+        return this.user.getUserId();
+    }
+
+    public String getPoster() {
+        return this.user.getUsername();
+    }
+
     public String getMessage() {
         return message;
     }

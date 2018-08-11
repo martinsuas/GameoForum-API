@@ -66,6 +66,14 @@ public class Thread implements Serializable {
         this.user = user;
     }
 
+    public int getAuthorId() {
+        return this.user.getUserId();
+    }
+
+    public String getAuthor() {
+        return this.user.getUsername();
+    }
+
     public String getTitle() {
         return title;
     }
