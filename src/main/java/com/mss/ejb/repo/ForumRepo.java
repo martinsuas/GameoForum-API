@@ -3,6 +3,7 @@ package com.mss.ejb.repo;
 import com.mss.entity.Forum;
 import com.mss.entity.Forum_;
 
+import javax.ejb.Stateful;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,7 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-@ApplicationScoped
+@Stateful
 public class ForumRepo {
 
     @PersistenceContext
@@ -22,6 +23,10 @@ public class ForumRepo {
 
     public Forum find(int forumId) {
         return em.find(Forum.class, forumId);
+    }
+
+    public void addForum(Forum forum) {
+        em.persist(forum);
     }
 
     public List<Forum> findAll() {

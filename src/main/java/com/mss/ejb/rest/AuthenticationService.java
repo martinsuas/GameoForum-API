@@ -1,14 +1,11 @@
-package com.mss.ejb.service;
+package com.mss.ejb.rest;
 
-
-import com.mss.ejb.repo.TokenRepo;
 import com.mss.ejb.repo.UserRepo;
 import com.mss.entity.Token;
 import com.mss.entity.User;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -16,22 +13,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Path("/authentication")
-public class AuthenticationService {
+@RequestScoped
+public class AuthenticationService implements Serializable {
     private static final Logger LOG = Logger.getLogger(AuthenticationService.class.getName());
-
-    @PersistenceContext
-    private EntityManager em;
 
     @Inject
     UserRepo repo;
-
-    @Inject
-    TokenRepo tkrep;
 
     static final String alphanumeric =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -45,13 +38,15 @@ public class AuthenticationService {
             @FormParam("username") String username,
             @FormParam("password") String password
     ) {
+        LOG.log(Level.INFO, username + " is attempting to log in.");
         try {
             User user = repo.findByUsername(username);
             authenticate(user, password);
             Token token = createToken(user);
-
+            LOG.log(Level.INFO, "Authentication successful");
             return Response.ok(token).build();
         } catch (Exception e) {
+            LOG.log(Level.INFO, "Authentication failed:" + e.getMessage());
             return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
@@ -63,32 +58,19 @@ public class AuthenticationService {
     }
 
     private Token createToken(User user) {
-        String gen_string;
-        while(true) {
-            // Generate random gen_string
-            SecureRandom sr = new SecureRandom();
-            StringBuilder sb = new StringBuilder(30);
-            for (int i = 0; i < 30; i++) {
-                sb.append(alphanumeric.charAt(sr.nextInt(alphanumeric.length())));
-            }
-            gen_string = sb.toString();
-
-            // We keep looping until a unique gen_string is produced.
-            // Very UNLIKELY that it would ever happen
-            // @TODO - Reconsider if it would matter if two users by some miracle end up w same token
-            if (tkrep.find(gen_string) == null)
-                break;
-
-            // In case of a match, there might be something wrong with our string
-            // generator. Let's log it.
-            LOG.log(Level.SEVERE, "What are the chances of a collision!?");
+        // Generate random gen_string
+        SecureRandom sr = new SecureRandom();
+        StringBuilder sb = new StringBuilder(30);
+        for (int i = 0; i < 30; i++) {
+            sb.append(alphanumeric.charAt(sr.nextInt(alphanumeric.length())));
         }
+        String gen_string = sb.toString();
+
+        LOG.log(Level.INFO, "Token for " + user.getUsername() + " generated!");
         Token token = new Token();
         token.setUser(user);
         token.setKey(gen_string);
         token.setExpirationTime((System.currentTimeMillis() / 1000L) + timetolive_seconds);
-
-        em.persist(token);
 
         return token;
     }

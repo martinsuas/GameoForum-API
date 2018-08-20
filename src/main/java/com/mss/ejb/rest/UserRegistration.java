@@ -1,4 +1,4 @@
-package com.mss.ejb.service;
+package com.mss.ejb.rest;
 
 import com.mss.entity.User;
 
