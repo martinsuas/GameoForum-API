@@ -1,7 +1,7 @@
 package com.mss.ejb.resource;
 
-import com.mss.entity.User;
 import com.mss.ejb.repo.UserRepo;
+import com.mss.entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

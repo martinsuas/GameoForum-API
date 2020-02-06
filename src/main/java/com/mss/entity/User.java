@@ -56,10 +56,12 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user")
     @XmlTransient
+    @Transient
     private List<Thread> threads = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     @XmlTransient
+    @Transient
     private List<Message> messages = new ArrayList<>();
 
     private LocalDate dob;

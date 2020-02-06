@@ -12,7 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table gameoforum.message
-CREATE TABLE IF NOT EXISTS `message` (
+CREATE TABLE IF NOT EXISTS `Message` (
   `messageId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `threadId` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `message` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2527 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table gameoforum.message: 2,526 rows
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` (`messageId`, `threadId`, `userId`, `message`, `postingTime`) VALUES
+/*!40000 ALTER TABLE `Message` DISABLE KEYS */;
+INSERT INTO `Message` (`messageId`, `threadId`, `userId`, `message`, `postingTime`) VALUES
 	(1, 175, 33, 'Give up, they attack fast with spells.', 1437869506),
 	(2, 175, 20, 'Maybe you can escape well with magic.', 1437869618),
 	(3, 175, 46, 'Seriously, try to summon well with luck.', 1437869829),
@@ -2552,7 +2552,7 @@ INSERT INTO `message` (`messageId`, `threadId`, `userId`, `message`, `postingTim
 	(2524, 174, 28, 'Give up, they escape fast on knives.', 1433474352),
 	(2525, 174, 39, 'Try to attack fast on spells.', 1433474685),
 	(2526, 174, 34, 'Give up, they defend well on items.', 1433474823);
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Message` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

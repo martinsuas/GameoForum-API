@@ -12,7 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table gameoforum.user
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `User` (
   `userId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(40) CHARACTER SET latin1 NOT NULL,
@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table gameoforum.user: ~50 rows (approximately)
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`userId`, `username`, `password`, `firstName`, `lastName`, `email`, `registrationTime`, `dob`, `gender`) VALUES
+/*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` (`userId`, `username`, `password`, `firstName`, `lastName`, `email`, `registrationTime`, `dob`, `gender`) VALUES
 	(1, 'cecil1', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Cecil', 'Camels', 'cecil1@yahoo.com', 1408068190, '1998-12-13', 'Male'),
 	(2, 'bella2', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Bella', 'Miller', 'bella2@yahoo.com', 1484003675, '1955-05-24', 'Female'),
 	(3, 'selena3', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Selena', 'Anderson', 'selena3@hotmail.com', 1397610252, '1960-04-12', 'Female'),
@@ -81,7 +81,7 @@ INSERT INTO `user` (`userId`, `username`, `password`, `firstName`, `lastName`, `
 	(48, 'valencia48', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Valencia', 'Burnstein', 'valencia48@gmail.com', 1399603256, '1990-07-04', 'Female'),
 	(49, 'randy49', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Randy', 'Smith', 'randy49@hotmail.com', 1463923623, '1977-08-23', 'Male'),
 	(50, 'derick50', 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d', 'Derick', 'Thorpe', 'derick50@gmail.com', 1479836299, '1993-08-21', 'Male');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+/*!40000 ALTER TABLE `User` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

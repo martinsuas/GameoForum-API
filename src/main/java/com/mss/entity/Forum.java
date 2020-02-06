@@ -1,11 +1,7 @@
 package com.mss.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -27,6 +23,7 @@ public class Forum implements Serializable {
 
     @OneToMany(mappedBy = "forum")
     @XmlTransient
+    @Transient
     private List<Thread> threads = new ArrayList<>();
 
     public int getForumId() {

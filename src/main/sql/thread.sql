@@ -12,7 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table gameoforum.thread
-CREATE TABLE IF NOT EXISTS `thread` (
+CREATE TABLE IF NOT EXISTS `Thread` (
   `threadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `forumId` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `thread` (
 ) ENGINE=MyISAM AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table gameoforum.thread: 175 rows
-/*!40000 ALTER TABLE `thread` DISABLE KEYS */;
-INSERT INTO `thread` (`threadId`, `forumId`, `userId`, `title`, `creationTime`) VALUES
+/*!40000 ALTER TABLE `Thread` DISABLE KEYS */;
+INSERT INTO `Thread` (`threadId`, `forumId`, `userId`, `title`, `creationTime`) VALUES
 	(1, 2, 33, 'When can I discover the magic?', 1437869506),
 	(2, 5, 23, 'Where do I obtain most of the zombies?', 1523763576),
 	(3, 4, 41, 'How many times must I defeat all of the Demon Lords?', 1409844667),
@@ -201,7 +201,7 @@ INSERT INTO `thread` (`threadId`, `forumId`, `userId`, `title`, `creationTime`) 
 	(173, 2, 46, 'When can I plot against some of the demons?', 1462324517),
 	(174, 3, 47, 'How do I check some of the demons?', 1419676934),
 	(175, 1, 34, 'When can I check all of the imps?', 1433464405);
-/*!40000 ALTER TABLE `thread` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Thread` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
