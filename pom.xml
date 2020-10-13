@@ -24,7 +24,7 @@
     <!-- Version control -->
     <version.hibernate-jpamodelgen>5.3.2.Final</version.hibernate-jpamodelgen>
     <version.javaee-api>8.0</version.javaee-api>
-    <version.junit>3.8.1</version.junit>
+    <version.junit>4.13.1</version.junit>
     <version.maven-clean>3.0.0</version.maven-clean>
     <version.mysql>8.0.11</version.mysql>
     <version.resteasy>3.6.0.Final</version.resteasy>
